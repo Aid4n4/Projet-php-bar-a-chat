@@ -82,6 +82,7 @@ CREATE TABLE Info_Pratique (
 -- ============================================================
 
 -- Compte admin
+-- Hash généré avec : password_hash('admin123', PASSWORD_BCRYPT) en PHP
 INSERT INTO Admin (login, mot_de_passe) VALUES
     ('admin', '$2y$10$EHo0l.yEmxzldChXveV3I.veE3VrnbdswGMATVQXVPZaMrwxBslJO');
 
