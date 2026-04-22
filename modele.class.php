@@ -129,7 +129,7 @@ class CategorieCarte extends Modele {
 class ArticleCarte extends Modele {
 
     public function getAll() {
-        $stmt->pdo->prepare(
+        $stmt = $this->pdo->prepare(
             "SELECT a.*, c.nom AS nom_categorie FROM Article_Carte a 
             JOIN Categorie_Carte c ON a.id_categorie = c.id_categorie 
             ORDER BY c.nom, a.nom"
@@ -202,7 +202,7 @@ class Reservation extends Modele {
 
     public function getAll() {
         $stmt = $this->pdo->prepare(
-            "SELCT * FROM Reservation ORDER BY date_reservation DESC, heure DESC"
+            "SELECT * FROM Reservation ORDER BY date_reservation DESC, heure DESC"
         );
         $stmt->execute();
         return $stmt->fetchAll();
@@ -263,7 +263,7 @@ class InfoPratique extends Modele {
 
     public function update($cle, $valeur) {
         $stmt = $this->pdo->prepare(
-            "UPDATE Info_Pratique SET valeur = :valeur WHERE che = :cle"
+            "UPDATE Info_Pratique SET valeur = :valeur WHERE cle = :cle"
         );
         return $stmt->execute([":valeur" => $valeur, ":cle" => $cle]);
     }
