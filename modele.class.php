@@ -1,8 +1,18 @@
 <?php
+// ============================================================
+// modele.class.php — Classes modèles
+// Contient toutes les classes qui interagissent avec la base de données.
+// Chaque classe correspond à une table de la base de données.
+// ============================================================
 
+// ──────────────────────────────────────────────
+// Classe Modele — Classe parente
+// Toutes les autres classes héritent de celle-ci.
+// Elle centralise la connexion PDO pour éviter de la répéter dans chaque classe.
+// ──────────────────────────────────────────────
 class Modele {
 
-    protected $pdo;
+    protected $pdo; // accessible dans toutes les classes filles
 
     public function __construct($pdo) {
         $this->pdo = $pdo;
@@ -10,8 +20,13 @@ class Modele {
 
 }
 
+// ──────────────────────────────────────────────
+// Classe Admin — Gestion des sessions admin
+// ──────────────────────────────────────────────
 class Admin extends Modele{
 
+    // Vérifie les identifiants du formulaire de connexion
+    // Retourne true si corrects, false sinon
     public function verifierLogin($login, $mdp) {
         $requete = $this->pdo->prepare(
             "SELECT * FROM Admin WHERE login = :login"
@@ -19,6 +34,7 @@ class Admin extends Modele{
         $requete->execute([":login" => $login]);
         $admin = $requete->fetch();
 
+        // password_verify() compare le mdp saisi avec le hash stocké en base
         if ($admin && password_verify($mdp, $admin["mot_de_passe"])) {
             $_SESSION["admin_id"] = $admin["id_admin"];
             $_SESSION["admin_login"] = $admin["login"];
@@ -27,14 +43,19 @@ class Admin extends Modele{
         return false;
     }
 
+    // Vérifie si une session admin est active
     public function estConnecte() {
         return isset($_SESSION["admin_id"]);
     }
 
 }
 
+// ──────────────────────────────────────────────
+// Classe Chat — Gestion des résidents
+// ──────────────────────────────────────────────
 class Chat extends Modele {
 
+    // Retourne tous les chats triés par nom
     public function getAll() {
         $requete = $this->pdo->prepare(
             "SELECT * FROM Chat ORDER BY nom"
@@ -43,6 +64,7 @@ class Chat extends Modele {
         return $requete->fetchAll();
     }
 
+    // Retourne un seul chat par son id
     public function getById($id) {
         $requete = $this->pdo->prepare(
             "SELECT * FROM Chat WHERE id_chat = :id"
@@ -51,6 +73,7 @@ class Chat extends Modele {
         return $requete->fetch();
     }
 
+    // Insère un nouveau chat — $data vient du formulaire admin
     public function insert($data) {
         $requete = $this->pdo->prepare(
             "INSERT INTO Chat
@@ -65,8 +88,9 @@ class Chat extends Modele {
         return $requete->execute($data);
     }
 
+    // Met à jour un chat existant
     public function update($id, $data) {
-        $data[":id"] = $id;
+        $data[":id"] = $id; // on ajoute l'id au tableau pour le WHERE
         $requete = $this->pdo->prepare(
             "UPDATE Chat SET
                 nom = :nom, race = :race,
@@ -80,6 +104,7 @@ class Chat extends Modele {
         return $requete->execute($data);
     }
 
+    // Supprime un chat par son id
     public function delete($id) {
         $requete = $this->pdo->prepare(
             "DELETE FROM Chat WHERE id_chat = :id"
@@ -89,6 +114,9 @@ class Chat extends Modele {
 
 }
 
+// ──────────────────────────────────────────────
+// Classe CategorieCarte — Gestion des catégories de la carte
+// ──────────────────────────────────────────────
 class CategorieCarte extends Modele {
 
     public function getAll() {
@@ -107,6 +135,7 @@ class CategorieCarte extends Modele {
         return $requete->fetch();
     }
 
+    // Prend $nom seul (pas un tableau) car une catégorie n'a qu'un seul attribut
     public function insert($nom) {
         $requete =$this->pdo->prepare(
             "INSERT INTO Categorie_Carte (nom) VALUES (:nom)"
@@ -121,6 +150,7 @@ class CategorieCarte extends Modele {
         return $requete->execute([":nom" =>$nom, ":id" => $id]);
     }
 
+    // Grâce au ON DELETE CASCADE (init.sql), les articles associés sont aussi supprimés automatiquement
     public function delete($id) {
         $requete = $this->pdo->prepare(
             "DELETE FROM Categorie_Carte WHERE id_categorie = :id"
@@ -130,8 +160,12 @@ class CategorieCarte extends Modele {
 
 }
 
+// ──────────────────────────────────────────────
+// Classe ArticleCarte — Gestion des articles de la carte
+// ──────────────────────────────────────────────
 class ArticleCarte extends Modele {
 
+    // JOIN pour récupérer le nom de la catégorie en une seule requête
     public function getAll() {
         $requete = $this->pdo->prepare(
             "SELECT a.*, c.nom AS nom_categorie FROM Article_Carte a 
@@ -142,6 +176,7 @@ class ArticleCarte extends Modele {
         return $requete->fetchAll();
     }
 
+    // Retourne les articles d'une catégorie précise
     public function getByCategorie($id_cat) {
         $requete = $this->pdo->prepare(
             "SELECT * FROM Article_Carte WHERE id_categorie = :id_cat ORDER BY nom"
@@ -179,6 +214,10 @@ class ArticleCarte extends Modele {
 
 }
 
+// ──────────────────────────────────────────────
+// Classe Horaire — Gestion des horaires d'ouverture
+// Les 7 jours sont pré-insérés dans init.sql, pas de insert() ni delete()
+// ──────────────────────────────────────────────
 class Horaire extends Modele {
 
     public function getAll() {
@@ -189,6 +228,7 @@ class Horaire extends Modele {
         return $requete->fetchAll();
     }
 
+    // Met à jour les horaires d'un jour précis par son id
     public function updateById($id, $data) {
         $data[":id"] = $id;
         $requete = $this->pdo->prepare(
@@ -203,8 +243,12 @@ class Horaire extends Modele {
 
 }
 
+// ──────────────────────────────────────────────
+// Classe Reservation — Gestion des réservations
+// ──────────────────────────────────────────────
 class Reservation extends Modele {
 
+    // Retourne toutes les réservations, les plus récentes en premier
     public function getAll() {
         $requete = $this->pdo->prepare(
             "SELECT * FROM Reservation ORDER BY date_reservation DESC, heure DESC"
@@ -221,6 +265,7 @@ class Reservation extends Modele {
         return $requete->fetch();
     }
 
+    // Le statut n'est pas dans $data : défini à 'en_attente' par défaut dans init.sql
     public function insert($data) {
         $requete = $this->pdo->prepare(
             "INSERT INTO Reservation 
@@ -233,6 +278,7 @@ class Reservation extends Modele {
         return $requete->execute($data);
     }
 
+    // L'admin ne modifie que le statut (en_attente / confirmee / annulee)
     public function updateStatut($id, $statut) {
         $requete = $this->pdo->prepare(
             "UPDATE Reservation SET statut = :statut WHERE id_reservation = :id"
@@ -249,6 +295,11 @@ class Reservation extends Modele {
 
 }
 
+// ──────────────────────────────────────────────
+// Classe InfoPratique — Gestion des infos pratiques
+// Système clé/valeur : cle="adresse" → valeur="10 rue des Chats"
+// Données pré-insérées dans init.sql, pas de insert() ni delete()
+// ──────────────────────────────────────────────
 class InfoPratique extends Modele {
 
     public function getAll() {
@@ -259,6 +310,8 @@ class InfoPratique extends Modele {
         return $requete->fetchAll();
     }
 
+    // Retourne la valeur d'une info par sa clé
+    // Ex: getByKey("telephone") → "04 72 XX XX XX"
     public function getByKey($cle) {
         $requete = $this->pdo->prepare(
             "SELECT valeur FROM Info_Pratique WHERE cle = :cle"
