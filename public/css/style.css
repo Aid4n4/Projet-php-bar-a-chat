@@ -1,0 +1,585 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap');
+
+:root {
+    --couleur-principale : #7B4F2E; /* marron chaud */
+    --couleur-secondaire : #C9956A;   /* beige orangé */
+    --couleur-fond       : #FAF6F1;   /* blanc cassé */
+    --couleur-fond-clair : #F2EBE0;   /* beige clair */
+    --couleur-texte      : #3A2A1A;   /* marron foncé */
+    --couleur-texte-clair: #7A6A5A;   /* gris brun */
+    --couleur-blanc      : #FFFFFF;   /*blanc*/
+    --couleur-erreur     : #C0392B;   /*rouge*/
+    --couleur-succes     : #27AE60;   /*vert*/
+
+    --police-titre : 'Playfair Display', Georgia, serif;
+    --police-texte : 'Lato', Arial, sans-serif;
+
+    --ombre : 0 4px 15px rgba(0,0,0,0.08);
+    --ombre-hover : 0 8px 25px rgba(0,0,0,0.15);
+    --border-radius : 12px;
+    --transition : all 0.3s ease;
+}
+
+/* reset de base */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Corps de la page */
+body {
+    font-family: var(--police-texte);
+    background: var(--couleur-fond);
+    color: var(--couleur-texte);
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: var(--couleur-principale);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--couleur-secondaire);
+}
+
+/* Navigation */
+
+header {
+    background: var(--couleur-blanc);
+    box-shadow: var(--ombre);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+/*Logo / Nom du bar */
+.nav-logo {
+    font-family: var(--police-titre);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--couleur-principale);
+}
+
+.nav-logo:hover {
+    color: var(--couleur-secondaire);
+}
+
+/* Liens de navigation */
+.nav-liens {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-liens a {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    color: var(--couleur-texte);
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-liens a:hover,
+.nav-liens a.actif {
+    color: var(--couleur-principale);
+    border-bottom: 2px solid var(--couleur-principale);
+}
+
+/*Couleur principale*/
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+/*Titres*/
+h1, h2, h3 {
+    font-family: var(--police-titre);
+    color: var(--couleur-principale);
+    line-height: 1.3;
+}
+
+h1 {font-size: 2.5rem; margin-bottom: 1.5rem;}
+h2 {font-size: 1.8rem; margin-bottom: 1rem;}
+h3 {font-size: 1.3rem; margin-bottom: 0.5rem;}
+
+/*Séparateur décoratif */
+.separateur {
+    text-align: center;
+    margin: 2rem 0;
+    color: var(--couleur-secondaire);
+    font-size: 1.5rem;
+    letter-spacing: 0.5rem;
+}
+
+/*Grille des résidents (page résidents)*/
+.grille-residents {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.carte-chat {
+    background: var(--couleur-blanc);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--ombre);
+    transition: var(--transition);
+    text-align: center;
+}
+
+.carte-chat:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--ombre-hover);
+}
+
+.carte-chat img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+
+.carte-chat-info {
+    padding: 1.2rem;
+}
+
+.carte-chat-info h3 {
+    font-size: 1.2rem;
+}
+
+.carte-chat-info p {
+    font-size: 0.85rem;
+    color: var(--couleur-texte-clair);
+    font-style: italic;
+}
+
+.carte-chat-info a {
+    display: inline-block;
+    margin-top: 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color : var(--couleur-principale);
+    border-bottom: 1px solid var(--couleur-principale);
+}
+
+/*fiche d'un résident */
+.fiche-chat {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    background: var(--couleur-blanc);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--ombre);
+}
+
+.fiche-chat img {
+    width: 100%;
+    border-radius: var(--border-radius);
+    object-fit: cover;
+}
+
+/* Barres de caractéristiques */
+.caracteristiques {
+    margin-top: 1.5rem;
+}
+
+.car-ligne {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
+}
+
+.car-label{
+    width: 100px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--couleur-texte-clair);
+}
+
+.car-barre {
+    flex: 1;
+    background: var(--couleur-fond-clair);
+    border-radius: 10px;
+    height: 10px;
+    overflow: hidden;
+}
+
+.car-barre-remplie {
+    height: 100%;
+    background: var(--couleur-secondaire);
+    border-radius: 10px;
+}
+
+/*Carte des boissons*/
+.section-categorie {
+    margin-bottom: 3rem;
+}
+
+.section-categorie h2 {
+    border-bottom: 2px solid var(--couleur-fond-clair);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.grille-articles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.carte-article {
+    background: var(--couleur-blanc);
+    border-radius: var(--border-radius);
+    padding: 1.2rem 1.5rem;
+    box-shadow: var(--ombre);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.article-info h3 {
+    font-size: 1rem;
+    color: var(--couleur-texte);
+}
+
+.article-info p{
+    font-size: 0.85rem;
+    color: var(--couleur-texte-clair);
+    margin-top: 0.3rem;
+}
+
+.article-prix {
+    font-family: var(--police-titre);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--couleur-principale);
+    white-space: nowrap;
+}
+
+/*Formulaires (réservation, login, admin) */
+.formulaire {
+    background: var(--couleur-blanc);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--ombre);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+fieldset {
+    border: 1px solid var(--couleur-fond-clair);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+}
+
+legend {
+    font-family: var(--police-titre);
+    font-size: 1.2rem;
+    color: var(--couleur-principale);
+    padding: 0 0.5rem;
+}
+
+.champ {
+    margin-bottom: 1.2rem;
+}
+
+label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--couleur-texte-clair);
+    margin-bottom: 0.4rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 1px solid #DDD;
+    border-radius: 8px;
+    font-family: var(--police-texte);
+    font-size: 0.95rem;
+    color: var(--couleur-texte);
+    background: var(--couleur-fond);
+    transition: var(--transition);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--couleur-secondaire);
+    box-shadow: 0 0 0 3px rgba(201, 149, 106, 0.2);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/*Boutons*/
+.btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-family: var(--police-texte);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition);
+}
+
+.btn-principal {
+    background: var(--couleur-principale);
+    color: var(--couleur-blanc);
+}
+
+.btn-principal:hover {
+    background: var(--couleur-secondaire);
+}
+
+.btn-danger {
+    background: var(--couleur-erreur);
+    color: var(--couleur-blanc);
+}
+
+.btn-danger:hover {
+    background: #A93226;
+    color: var(--couleur-blanc);
+}
+
+/*Messages*/
+.message-succes {
+    background: #D5F5E3;
+    color: #1E8449;
+    border: 1px solid #A9DFBF;
+    border-radius: 8px;
+    padding : 1rem;
+    margin-bottom: 1rem;
+}
+.message-erreur {
+    background: #FDEDEC;
+    color: var(--couleur-erreur);
+    border: 1px solid #F5B7B1;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+/*page info pratiques */
+.info-grille {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.info-bloc {
+    background: var(--couleur-blanc);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--ombre);
+}
+
+.info-bloc h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--couleur-fond-clair);
+}
+
+/*tableau horaire*/
+table {
+    width : 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+th {
+    text-align: left;
+    padding: 0.5rem;
+    color: var(--couleur-texte-clair);
+    font-weight: 700;
+}
+
+td {
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--couleur-fond-clair);
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+.ferme {
+    color: var(--couleur-erreur);
+    font-style: italic;
+}
+
+/*espace admin*/
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--couleur-fond-clair);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--couleur-blanc);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--ombre);
+}
+
+.admin-table th {
+    background: var(--couleur-principale);
+    color: var(--couleur-blanc);
+    padding: 1rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.admin-table td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--couleur-fond-clair);
+    font-size: 0.9rem;
+}
+
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-table tr:hover td {
+    background: var(--couleur-fond);
+}
+
+/*Badges statut réservation*/
+.statut {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.statut-en_attente {background: #FEF9E7; color: #B7950B; }
+.statut-confirmee {background: #D5F5E3; color: #1E8449 }
+.statut-annulee {background: #FDEDEC; color: #C0392B; }
+
+/*Pied de page*/
+footer {
+    background: var(--couleur-texte);
+    color: var(--couleur-fond-clair);
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+    font-size: 0.9rem;
+}
+
+footer a{
+    color: var(--couleur-secondaire);
+}
+
+footer a:hover {
+    color: var(--couleur-blanc);
+}
+
+/*Page accueil*/
+.hero {
+    background: var(--couleur-fond-clair);
+    text-align: center;
+    padding: 5rem 2rem;
+}
+
+.hero-contenu {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero-sous-titre {
+    font-size: 1.2rem;
+    color: var(--couleur-texte-clair);
+    margin-bottom: 2rem;
+}
+
+.accueil-description,
+.accueil-horaires {
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    text-align: center;
+}
+
+/*Responsive*/
+@media (max-width: 768px) {
+
+    nav {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .nav-liens {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        justify-content: center;
+    }
+
+    h1 {font-size: 1.8rem;}
+    h2 {font-size: 1.4rem;}
+
+    .fiche-chat{
+        grid-template-columns: 1fr;
+    }
+
+    .info-grille{
+        grid-template-columns: 1fr;
+    }
+
+    .grille-residents {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+}
