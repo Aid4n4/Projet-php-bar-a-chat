@@ -1,4 +1,4 @@
-<!--include file="vues/vue-header.php"-->
+<?php require("vue-header.php") ?>
 
 <!-- Hero : grande image d'accueil -->
  <section class="hero">
@@ -48,4 +48,4 @@
     </table>
 </section>
 
-<!--include file="vues/vue-footer.php"-->
+<?php require("vue-header.php") ?>
