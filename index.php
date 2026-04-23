@@ -104,5 +104,4 @@ switch ($page) {
         header('Location: index.php?page=accueil');
         exit;
 }
-
 ?>
