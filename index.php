@@ -84,18 +84,54 @@ switch ($page) {
         $controller = new AdminController();
 
         switch ($action) {
-            case 'dashboard':    $controller->dashboard();                          break;
-            case 'add_chat':     $controller->addChat();                            break;
-            case 'edit_chat':    $controller->editChat((int) ($_GET['id'] ?? 0));   break;
-            case 'delete_chat':  $controller->deleteChat((int) ($_GET['id'] ?? 0)); break;
-            case 'add_article':  $controller->addArticle();                         break;
-            case 'edit_article': $controller->editArticle((int) ($_GET['id'] ?? 0));break;
-            case 'delete_article':$controller->deleteArticle((int)($_GET['id']??0));break;
-            case 'edit_horaires':$controller->editHoraires();                       break;
-            case 'edit_infos':   $controller->editInfos();                          break;
-            case 'reservations': $controller->gererReservations();                  break;
-            case 'statut_reservation': $controller->updateStatutReservation((int)($_GET['id']??0)); break;
-            default:             $controller->dashboard();                          break;
+
+            case 'dashboard':
+                $controller->dashboard();
+                break;
+
+            case 'add_chat':
+                $controller->addChat();
+                break;
+
+            case 'edit_chat':
+                $controller->editChat((int) ($_GET['id'] ?? 0));
+                break;
+
+            case 'delete_chat':
+                $controller->deleteChat((int) ($_GET['id'] ?? 0));
+                break;
+
+            case 'add_article':
+                $controller->addArticle();
+                break;
+
+            case 'edit_article':
+                $controller->editArticle((int) ($_GET['id'] ?? 0));
+                break;
+
+            case 'delete_article':
+                $controller->deleteArticle((int)($_GET['id']??0));
+                break;
+
+            case 'edit_horaires':
+                $controller->editHoraires();
+                break;
+
+            case 'edit_infos':
+                $controller->editInfos();
+                break;
+
+            case 'reservations':
+                $controller->gererReservations();
+                break;
+
+            case 'statut_reservation':
+                $controller->updateStatutReservation((int)($_GET['id']??0));
+                break;
+
+            default:
+            $controller->dashboard();
+            break;
         }
         break;
 
