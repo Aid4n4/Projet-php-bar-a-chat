@@ -18,6 +18,15 @@ class ArticleCarte extends Model {
         return $requete->fetchAll();
     }
 
+    // Retourne un seul article par son id
+    public function getById($id) {
+        $requete = $this->pdo->prepare(
+            "SELECT * FROM Article_Carte WHERE id_article = :id"
+        );
+        $requete->execute([":id" => $id]);
+        return $requete->fetch();
+    }
+    
     // Retourne les articles d'une catégorie précise
     public function getByCategorie($id_cat) {
         $requete = $this->pdo->prepare(
