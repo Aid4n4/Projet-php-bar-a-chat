@@ -27,13 +27,10 @@ class ChatController {
     public function fiche(int $id): void {
         $chat = $this->model->getById($id);
 
-        // Si le chat n'existe pas → page 404
+        // Si le chat n'existe pas → retour à la liste des résidents
         if (!$chat) {
-            http_response_code(404);
-            include 'views/templates/header.php';
-            include 'views/erreur/404.php';
-            include 'views/templates/footer.php';
-            return;
+            header('Location: index.php?page=residents');
+            exit;
         }
 
         include 'views/templates/header.php';
