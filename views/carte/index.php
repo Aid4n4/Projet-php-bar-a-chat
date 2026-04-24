@@ -1,7 +1,6 @@
 <?php
 // ===========================================================
 // views/carte/index.php - La carte dees boissons
-// COUCHE : Vue
 // Variable disponibles : $categorie, $articles
 // ===========================================================
 ?>
@@ -34,4 +33,3 @@
 
     </section>
 <?php endforeach; ?>
-            
