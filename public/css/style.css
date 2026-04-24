@@ -2,14 +2,14 @@
 
 :root {
     --couleur-principale : #7B4F2E; /* marron chaud */
-    --couleur-secondaire : #C9956A;   /* beige orangé */
-    --couleur-fond       : #FAF6F1;   /* blanc cassé */
-    --couleur-fond-clair : #F2EBE0;   /* beige clair */
-    --couleur-texte      : #3A2A1A;   /* marron foncé */
-    --couleur-texte-clair: #7A6A5A;   /* gris brun */
-    --couleur-blanc      : #FFFFFF;   /*blanc*/
-    --couleur-erreur     : #C0392B;   /*rouge*/
-    --couleur-succes     : #27AE60;   /*vert*/
+    --couleur-secondaire : #C9956A; /* beige orangé */
+    --couleur-fond       : #FAF6F1; /* blanc cassé */
+    --couleur-fond-clair : #F2EBE0; /* beige clair */
+    --couleur-texte      : #3A2A1A; /* marron foncé */
+    --couleur-texte-clair: #7A6A5A; /* gris brun */
+    --couleur-blanc      : #FFFFFF; /* blanc */
+    --couleur-erreur     : #C0392B; /* rouge */
+    --couleur-succes     : #27AE60; /* vert */
 
     --police-titre : 'Playfair Display', Georgia, serif;
     --police-texte : 'Lato', Arial, sans-serif;
@@ -53,7 +53,6 @@ a:hover {
 }
 
 /* Navigation */
-
 header {
     background: var(--couleur-blanc);
     box-shadow: var(--ombre);
@@ -72,7 +71,7 @@ nav {
     height: 70px;
 }
 
-/*Logo / Nom du bar */
+/* Logo / Nom du bar */
 .nav-logo {
     font-family: var(--police-titre);
     font-size: 1.6rem;
@@ -108,14 +107,14 @@ nav {
     border-bottom: 2px solid var(--couleur-principale);
 }
 
-/*Couleur principale*/
+/* Contenu principal */
 main {
     max-width: 1100px;
     margin: 0 auto;
     padding: 3rem 2rem;
 }
 
-/*Titres*/
+/* Titres */
 h1, h2, h3 {
     font-family: var(--police-titre);
     color: var(--couleur-principale);
@@ -126,7 +125,7 @@ h1 {font-size: 2.5rem; margin-bottom: 1.5rem;}
 h2 {font-size: 1.8rem; margin-bottom: 1rem;}
 h3 {font-size: 1.3rem; margin-bottom: 0.5rem;}
 
-/*Séparateur décoratif */
+/* Séparateur décoratif */
 .separateur {
     text-align: center;
     margin: 2rem 0;
@@ -135,7 +134,7 @@ h3 {font-size: 1.3rem; margin-bottom: 0.5rem;}
     letter-spacing: 0.5rem;
 }
 
-/*Grille des résidents (page résidents)*/
+/* Grille des résidents (page résidents) */
 .grille-residents {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -188,7 +187,7 @@ h3 {font-size: 1.3rem; margin-bottom: 0.5rem;}
     border-bottom: 1px solid var(--couleur-principale);
 }
 
-/*fiche d'un résident */
+/* Fiche d'un résident */
 .fiche-chat {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -199,10 +198,17 @@ h3 {font-size: 1.3rem; margin-bottom: 0.5rem;}
     box-shadow: var(--ombre);
 }
 
-.fiche-chat img {
+.fiche-chat-photo img {
     width: 100%;
     border-radius: var(--border-radius);
     object-fit: cover;
+    max-height: 450px;
+}
+
+.fiche-chat-infos h2 {
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
 /* Barres de caractéristiques */
@@ -238,7 +244,7 @@ h3 {font-size: 1.3rem; margin-bottom: 0.5rem;}
     border-radius: 10px;
 }
 
-/*Carte des boissons*/
+/* Carte des boissons */
 .section-categorie {
     margin-bottom: 3rem;
 }
@@ -285,7 +291,7 @@ h3 {font-size: 1.3rem; margin-bottom: 0.5rem;}
     white-space: nowrap;
 }
 
-/*Formulaires (réservation, login, admin) */
+/* Formulaires (réservation, login, admin) */
 .formulaire {
     background: var(--couleur-blanc);
     border-radius: var(--border-radius);
@@ -352,7 +358,7 @@ textarea {
     min-height: 100px;
 }
 
-/*Boutons*/
+/* Boutons */
 .btn {
     display: inline-block;
     padding: 0.75rem 2rem;
@@ -376,6 +382,16 @@ textarea {
     background: var(--couleur-secondaire);
 }
 
+/* Bouton secondaire — ajouté */
+.btn-secondaire {
+    background: var(--couleur-fond-clair);
+    color: var(--couleur-texte);
+}
+
+.btn-secondaire:hover {
+    background: #DDD;
+}
+
 .btn-danger {
     background: var(--couleur-erreur);
     color: var(--couleur-blanc);
@@ -386,7 +402,7 @@ textarea {
     color: var(--couleur-blanc);
 }
 
-/*Messages*/
+/* Messages */
 .message-succes {
     background: #D5F5E3;
     color: #1E8449;
@@ -404,7 +420,7 @@ textarea {
     margin-bottom: 1rem;
 }
 
-/*page info pratiques */
+/* Page infos pratiques */
 .info-grille {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -426,7 +442,7 @@ textarea {
     border-bottom: 2px solid var(--couleur-fond-clair);
 }
 
-/*tableau horaire*/
+/* Tableau horaire */
 table {
     width : 100%;
     border-collapse: collapse;
@@ -454,7 +470,7 @@ tr:last-child td {
     font-style: italic;
 }
 
-/*espace admin*/
+/* Espace admin */
 .admin-header {
     display: flex;
     justify-content: space-between;
@@ -496,7 +512,7 @@ tr:last-child td {
     background: var(--couleur-fond);
 }
 
-/*Badges statut réservation*/
+/* Badges statut réservation */
 .statut {
     display: inline-block;
     padding: 3px 10px;
@@ -506,10 +522,10 @@ tr:last-child td {
 }
 
 .statut-en_attente {background: #FEF9E7; color: #B7950B; }
-.statut-confirmee {background: #D5F5E3; color: #1E8449 }
+.statut-confirmee {background: #D5F5E3; color: #1E8449; }
 .statut-annulee {background: #FDEDEC; color: #C0392B; }
 
-/*Pied de page*/
+/* Pied de page */
 footer {
     background: var(--couleur-texte);
     color: var(--couleur-fond-clair);
@@ -527,7 +543,7 @@ footer a:hover {
     color: var(--couleur-blanc);
 }
 
-/*Page accueil*/
+/* Page accueil */
 .hero {
     background: var(--couleur-fond-clair);
     text-align: center;
@@ -552,7 +568,7 @@ footer a:hover {
     text-align: center;
 }
 
-/*Responsive*/
+/* Responsive */
 @media (max-width: 768px) {
 
     nav {
@@ -571,11 +587,11 @@ footer a:hover {
     h1 {font-size: 1.8rem;}
     h2 {font-size: 1.4rem;}
 
-    .fiche-chat{
+    .fiche-chat {
         grid-template-columns: 1fr;
     }
 
-    .info-grille{
+    .info-grille {
         grid-template-columns: 1fr;
     }
 
