@@ -133,6 +133,19 @@ class ChatController {
     // ADMIN : suppression d'un chat
     public function deleteChat(int $id): void {
         $this->requireAdmin();
+
+        // On récupère le chat avant de le supprimer pour connaître le nom de son fichier photo
+        $chat = $this->model->getById($id);
+
+        // On supprime le fichier photo s'il existe
+        if ($chat && $chat['photo']) {
+            $cheminPhoto = 'public/images/' . $chat['photo'];
+            if (file_exists($cheminPhoto)) {
+                unlink($cheminPhoto);
+            }
+        }
+
+        // On supprime le chat de la BDD
         $this->model->delete($id);
         header('Location: index.php?page=admin');
         exit;
