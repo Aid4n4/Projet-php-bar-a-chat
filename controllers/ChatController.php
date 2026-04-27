@@ -61,7 +61,7 @@ class ChatController {
                 $data = [
                     ':nom' => htmlspecialchars(trim($_POST['nom'])),
                     ':race' => htmlspecialchars(trim($_POST['race'] ?? '')),
-                    ':date_de_naissance' => $_POST['date_de_naissance'] ?? null,
+                    ':date_de_naissance' => !empty($_POST['date_de_naissance']) ? $_POST['date_de_naissance'] : null,
                     ':sexe' => $_POST['sexe'],
                     ':car_joueur' => (int) ($_POST['car_joueur'] ?? 0),
                     ':car_calin' => (int) ($_POST['car_calin'] ?? 0),
@@ -107,7 +107,7 @@ class ChatController {
                 $data = [
                     ':nom' => htmlspecialchars(trim($_POST['nom'])),
                     ':race' => htmlspecialchars(trim($_POST['race'] ?? '')),
-                    ':date_de_naissance' => $_POST['date_de_naissance'] ?? null,
+                    ':date_de_naissance' => !empty($_POST['date_de_naissance']) ? $_POST['date_de_naissance'] : null,
                     ':sexe' => $_POST['sexe'],
                     ':car_joueur' => (int) ($_POST['car_joueur'] ?? 0),
                     ':car_calin' => (int) ($_POST['car_calin'] ?? 0),
