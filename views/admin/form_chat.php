@@ -28,9 +28,22 @@ $action  = $edition
 <?php endif; ?>
 
 <div class="formulaire">
-    <form action="<?= $action ?>" method="post">
+    <form action="<?= $action ?>" method="post" enctype="multipart/form-data">
         <fieldset>
             <legend>Informations générales</legend>
+
+            <div class="champ">
+                <label for="photo">Photo *</label>
+                <input type="file" id="photo" name="photo"
+                    accept="image/jpeg, image/png, image/webp"
+                    <?= $edition ? '' : 'required' ?>>
+                <?php if ($edition && $chat['photo']) : ?>
+                    <p>Photo actuelle :
+                        <img src="public/images/<?= htmlspecialchars($chat['photo']) ?>"
+                            style="width:100px; border-radius:8px; margin-top:0.5rem;">
+                    </p>
+                <?php endif; ?>
+            </div>
 
             <div class="champ">
                 <label for="nom">Nom *</label>
