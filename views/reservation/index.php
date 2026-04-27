@@ -58,23 +58,25 @@
             <div class="champ">
                 <label for="date_reservation">Date *</label>
                 <input type="date" id="date_reservation" name="date_reservation"
-                       value="<?= htmlspecialchars($_POST['date_reservation'] ?? '') ?>"
-                       required>
+                      value="<?= htmlspecialchars($_POST['date_reservation'] ?? '') ?>"
+                      min="<?= date('Y-m-d') ?>"
+                      required>
             </div>
 
             <div class="champ">
                 <label for="heure">Heure *</label>
                 <input type="time" id="heure" name="heure"
-                       value="<?= htmlspecialchars($_POST['heure'] ?? '') ?>"
-                       required>
+                      value="<?= htmlspecialchars($_POST['heure'] ?? '') ?>"
+                      min="12:00" max="21:00"
+                      required>
             </div>
 
             <div class="champ">
                 <label for="nb_personnes">Nombre de personnes *</label>
                 <input type="number" id="nb_personnes" name="nb_personnes"
-                       min="1" max="10"
-                       value="<?= htmlspecialchars($_POST['nb_personnes'] ?? '') ?>"
-                       required>
+                      min="1" max="10"
+                      value="<?= htmlspecialchars($_POST['nb_personnes'] ?? '') ?>"
+                      required>
             </div>
 
             <div class="champ">
