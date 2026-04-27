@@ -10,6 +10,7 @@ class ChatController {
 
     private Chat $model;
 
+
     public function __construct() {
         $this->model = new Chat();
     }
@@ -45,9 +46,17 @@ class ChatController {
         $erreurs = [];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            
             if (empty($_POST['nom'])) {
                 $erreurs[] = 'Le nom est obligatoire.';
             }
+
+            // Upload de la photo obligatoire à l'ajout
+            $photo = $this->uploadPhoto();
+            if (!$photo) {
+                $erreurs[] = 'La photo est obligatoire (jpg, png ou webp).';
+            }
+
             if (empty($erreurs)) {
                 $data = [
                     ':nom' => htmlspecialchars(trim($_POST['nom'])),
@@ -62,7 +71,7 @@ class ChatController {
                     ':desc_vie_au_bar' => $_POST['desc_vie_au_bar'] ?? '',
                     ':desc_aime' => $_POST['desc_aime'] ?? '',
                     ':desc_nom' => $_POST['desc_nom'] ?? '',
-                    ':photo' => null,
+                    ':photo' => $photo,
                 ];
                 $this->model->insert($data);
                 header('Location: index.php?page=admin');
@@ -89,9 +98,11 @@ class ChatController {
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
             if (empty($_POST['nom'])) {
                 $erreurs[] = 'Le nom est obligatoire.';
             }
+
             if (empty($erreurs)) {
                 $data = [
                     ':nom' => htmlspecialchars(trim($_POST['nom'])),
@@ -106,7 +117,7 @@ class ChatController {
                     ':desc_vie_au_bar' => $_POST['desc_vie_au_bar'] ?? '',
                     ':desc_aime' => $_POST['desc_aime'] ?? '',
                     ':desc_nom' => $_POST['desc_nom'] ?? '',
-                    ':photo' => $chat['photo'], // on garde l'ancienne photo
+                    ':photo' => $this->uploadPhoto() ?: $chat['photo'], // Si nouvelle photo uploadée on la prend, sinon on garde l'ancienne
                 ];
                 $this->model->update($id, $data);
                 header('Location: index.php?page=admin');
@@ -127,6 +138,26 @@ class ChatController {
         exit;
     }
 
+    // Gère l'upload de la photo, retourne le nom du fichier
+    private function uploadPhoto(): ?string {
+        if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
+
+            $ext = strtolower(pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION));
+            $extensions_autorisees = ['jpg', 'jpeg', 'png', 'webp'];
+
+            if (!in_array($ext, $extensions_autorisees)) {
+                return null;
+            }
+
+            // Nom unique pour éviter les collisions
+            $nomFichier = uniqid('chat_') . '.' . $ext;
+            $destination = 'public/images/' . $nomFichier;
+            move_uploaded_file($_FILES['photo']['tmp_name'], $destination);
+            return $nomFichier;
+        }
+        return null;
+    }
+    
     // Vérifie que l'admin est connecté, redirige vers login sinon
     private function requireAdmin(): void {
         if (!isset($_SESSION['admin_id'])) {
