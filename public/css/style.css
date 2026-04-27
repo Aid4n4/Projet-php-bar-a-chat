@@ -380,7 +380,6 @@ textarea {
 
 .btn-principal:hover {
     background: var(--couleur-secondaire);
-    color: var(--couleur-blanc);
 }
 
 /* Bouton secondaire — ajouté */
