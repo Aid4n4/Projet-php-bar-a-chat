@@ -63,6 +63,37 @@
             + Ajouter un article
         </a>
     </div>
+
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Catégorie</th>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($articles as $article) : ?>
+                <tr>
+                    <td><?= htmlspecialchars($article['nom_categorie']) ?></td>
+                    <td><?= htmlspecialchars($article['nom']) ?></td>
+                    <td><?= number_format($article['prix'], 2, ',', '') ?> €</td>
+                    <td>
+                        <a href="index.php?page=admin&action=edit_article&id=<?= $article['id_article'] ?>"
+                           class="btn btn-secondaire">
+                            Modifier
+                        </a>
+                        <a href="index.php?page=admin&action=delete_article&id=<?= $article['id_article'] ?>"
+                           class="btn btn-danger"
+                           onclick="return confirm('Supprimer <?= htmlspecialchars($article['nom']) ?> ?')">
+                            Supprimer
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 </section>
 
 <div class="separateur">✦ ✦ ✦</div>
