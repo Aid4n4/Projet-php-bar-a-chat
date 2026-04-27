@@ -15,7 +15,7 @@ CREATE TABLE Chat (
     id_chat INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
     race VARCHAR(100),
-    date_de_naissance DATE NOT NULL,
+    date_de_naissance DATE,
     sexe ENUM('Mâle', 'Femelle') NOT NULL,
     car_joueur INT DEFAULT 0,
     car_calin INT DEFAULT 0,
