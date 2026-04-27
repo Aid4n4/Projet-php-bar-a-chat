@@ -14,7 +14,7 @@
     <!-- Photo du chat -->
     <div class="fiche-chat-photo">
         <img
-            src="<?= htmlspecialchars($chat['photo'] ?? 'public/images/default.jpg') ?>"
+            src="<?= htmlspecialchars($chat['photo'] ? 'public/images/' . $chat['photo'] : 'public/images/default.jpg') ?>"
             alt="Photo de <?= htmlspecialchars($chat['nom']) ?>">
     </div>
 
