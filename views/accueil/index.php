@@ -43,8 +43,8 @@
                     <td>
                         <?php if ($horaire['est_ouvert']) : ?>
                             <?= htmlspecialchars($horaire['jour']) ?>
-                            — <?= $horaire['heure_ouverture'] ?>
-                            à <?= $horaire['heure_fermeture'] ?>
+                            — <?= substr($horaire['heure_ouverture'], 0, 5) ?>
+                            à <?= substr($horaire['heure_fermeture'], 0, 5) ?>
                         <?php else : ?>
                             <span class="ferme">
                                 <?= htmlspecialchars($horaire['jour']) ?> — Fermé
