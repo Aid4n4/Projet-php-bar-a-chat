@@ -9,6 +9,14 @@ $edition = isset($chat) && !empty($chat);
 $action  = $edition
     ? 'index.php?page=admin&action=edit_chat&id=' . $chat['id_chat']
     : 'index.php?page=admin&action=add_chat';
+
+// Labels initiaux selon le sexe du chat (en mode édition)
+$femelle = isset($chat['sexe']) && $chat['sexe'] === 'Femelle';
+$joueur = $femelle ? 'Joueuse' : 'Joueur';
+$calin = $femelle ? 'Câline' : 'Câlin';
+$gourmand  = $femelle ? 'Gourmande' : 'Gourmand';
+$paresseux = $femelle ? 'Paresseuse' : 'Paresseux';
+$desc_aime = $femelle ? 'Elle aime' : 'Il/Elle aime';
 ?>
 
 <div class="admin-header">
@@ -70,41 +78,40 @@ $action  = $edition
                     accept="image/jpeg, image/png, image/webp"
                     <?= $edition ? '' : 'required' ?>>
                 <?php if ($edition && $chat['photo']) : ?>
-                    <p>Photo actuelle :
-                        <img src="public/images/<?= htmlspecialchars($chat['photo']) ?>"
-                            style="width:100px; border-radius:8px; margin-top:0.5rem;">
-                    </p>
+                    <p style="margin-top: 0.5rem;">Photo actuelle :</p>
+                    <img src="public/images/<?= htmlspecialchars($chat['photo']) ?>"
+                         style="width:100px; border-radius:8px; margin-top:0.5rem;">
                 <?php endif; ?>
             </div>
-            
+
         </fieldset>
 
         <fieldset style="margin-top: 1rem;">
             <legend>Caractéristiques (0 à 5)</legend>
 
             <div class="champ">
-                <label for="car_joueur">Joueur</label>
+                <label for="car_joueur"><span id="label_joueur"><?= $joueur ?></span></label>
                 <input type="number" id="car_joueur" name="car_joueur"
                        min="0" max="5"
                        value="<?= $chat['car_joueur'] ?? 0 ?>">
             </div>
 
             <div class="champ">
-                <label for="car_calin">Câlin</label>
+                <label for="car_calin"><span id="label_calin"><?= $calin ?></span></label>
                 <input type="number" id="car_calin" name="car_calin"
                        min="0" max="5"
                        value="<?= $chat['car_calin'] ?? 0 ?>">
             </div>
 
             <div class="champ">
-                <label for="car_gourmand">Gourmand</label>
+                <label for="car_gourmand"><span id="label_gourmand"><?= $gourmand ?></span></label>
                 <input type="number" id="car_gourmand" name="car_gourmand"
                        min="0" max="5"
                        value="<?= $chat['car_gourmand'] ?? 0 ?>">
             </div>
 
             <div class="champ">
-                <label for="car_paresseux">Paresseux</label>
+                <label for="car_paresseux"><span id="label_paresseux"><?= $paresseux ?></span></label>
                 <input type="number" id="car_paresseux" name="car_paresseux"
                        min="0" max="5"
                        value="<?= $chat['car_paresseux'] ?? 0 ?>">
@@ -136,7 +143,7 @@ $action  = $edition
             </div>
 
             <div class="champ">
-                <label for="desc_aime">Il/Elle aime</label>
+                <label for="desc_aime"><span id="label_desc_aime"><?= $desc_aime ?></span></label>
                 <textarea id="desc_aime" name="desc_aime"><?=
                     htmlspecialchars($chat['desc_aime'] ?? '')
                 ?></textarea>
@@ -150,3 +157,15 @@ $action  = $edition
         </div>
     </form>
 </div>
+
+<script>
+// Met à jour les labels des caractéristiques selon le sexe sélectionné
+document.getElementById('sexe').addEventListener('change', function() {
+    const femelle = this.value === 'Femelle';
+    document.getElementById('label_joueur').textContent = femelle ? 'Joueuse' : 'Joueur';
+    document.getElementById('label_calin').textContent = femelle ? 'Câline' : 'Câlin';
+    document.getElementById('label_gourmand').textContent = femelle ? 'Gourmande' : 'Gourmand';
+    document.getElementById('label_paresseux').textContent = femelle ? 'Paresseuse' : 'Paresseux';
+    document.getElementById('label_desc_aime').textContent = femelle ? 'Elle aime' : 'Il aime';
+});
+</script>
