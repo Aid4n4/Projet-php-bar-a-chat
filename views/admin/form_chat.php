@@ -16,7 +16,7 @@ $joueur = $femelle ? 'Joueuse' : 'Joueur';
 $calin = $femelle ? 'Câline' : 'Câlin';
 $gourmand  = $femelle ? 'Gourmande' : 'Gourmand';
 $paresseux = $femelle ? 'Paresseuse' : 'Paresseux';
-$desc_aime = $femelle ? 'Elle aime' : 'Il/Elle aime';
+$desc_aime = $femelle ? 'Elle aime' : 'Il aime';
 ?>
 
 <div class="admin-header">
