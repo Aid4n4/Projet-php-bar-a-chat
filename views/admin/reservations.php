@@ -43,23 +43,18 @@
                         </span>
                     </td>
                     <td>
-                        <!-- Changer le statut -->
+                        <!-- Confirmer -->
                         <a href="index.php?page=admin&action=statut_reservation&id=<?= $reservation['id_reservation'] ?>&statut=confirmee"
-                           class="btn btn-principal"
-                           style="font-size: 0.75rem; padding: 0.4rem 0.8rem;">
+                        class="btn btn-principal"
+                        style="font-size: 0.75rem; padding: 0.4rem 0.8rem;">
                             ✓ Confirmer
                         </a>
+                        <!-- Annuler — change le statut sans supprimer -->
                         <a href="index.php?page=admin&action=statut_reservation&id=<?= $reservation['id_reservation'] ?>&statut=annulee"
-                           class="btn btn-secondaire"
-                           style="font-size: 0.75rem; padding: 0.4rem 0.8rem;">
+                        class="btn btn-secondaire"
+                        style="font-size: 0.75rem; padding: 0.4rem 0.8rem;"
+                        onclick="return confirm('Annuler cette réservation ?')">
                             ✗ Annuler
-                        </a>
-                        <!-- Supprimer -->
-                        <a href="index.php?page=admin&action=suppr_reservation&id=<?= $reservation['id_reservation'] ?>"
-                           class="btn btn-danger"
-                           style="font-size: 0.75rem; padding: 0.4rem 0.8rem;"
-                           onclick="return confirm('Supprimer cette réservation ?')">
-                            Supprimer
                         </a>
                     </td>
                 </tr>
