@@ -81,57 +81,71 @@ switch ($page) {
     // ── Espace admin ─────────────────────────────────────────
     case 'admin':
         $action = isset($_GET['action']) ? $_GET['action'] : 'dashboard';
-        $controller = new AdminController();
 
         switch ($action) {
 
             case 'dashboard':
+                $controller = new AdminController();
                 $controller->dashboard();
                 break;
 
+            // ── Gestion des chats → ChatController ──
             case 'add_chat':
+                $controller = new ChatController();
                 $controller->addChat();
                 break;
 
             case 'edit_chat':
+                $controller = new ChatController();
                 $controller->editChat((int) ($_GET['id'] ?? 0));
                 break;
 
             case 'delete_chat':
+                $controller = new ChatController();
                 $controller->deleteChat((int) ($_GET['id'] ?? 0));
                 break;
 
+            // ── Gestion des articles → CarteController ──
             case 'add_article':
+                $controller = new CarteController();
                 $controller->addArticle();
                 break;
 
             case 'edit_article':
+                $controller = new CarteController();
                 $controller->editArticle((int) ($_GET['id'] ?? 0));
                 break;
 
             case 'delete_article':
-                $controller->deleteArticle((int)($_GET['id']??0));
+                $controller = new CarteController();
+                $controller->deleteArticle((int) ($_GET['id'] ?? 0));
                 break;
 
+            // ── Horaires, infos, réservations → AdminController ──
             case 'edit_horaires':
+                $controller = new AdminController();
                 $controller->editHoraires();
                 break;
 
             case 'edit_infos':
+                $controller = new AdminController();
                 $controller->editInfos();
                 break;
 
             case 'reservations':
+                $controller = new AdminController();
                 $controller->gererReservations();
                 break;
 
             case 'statut_reservation':
-                $controller->updateStatutReservation((int)($_GET['id']??0));
+                $controller = new AdminController();
+                $controller->updateStatutReservation((int) ($_GET['id'] ?? 0));
                 break;
 
             default:
-            $controller->dashboard();
-            break;
+                $controller = new AdminController();
+                $controller->dashboard();
+                break;
         }
         break;
 
