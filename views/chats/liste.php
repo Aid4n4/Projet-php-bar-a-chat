@@ -12,7 +12,7 @@
     <?php foreach ($chats as $chat) : ?>
         <article class="carte-chat">
             <img
-                src="<?= htmlspecialchars($chat['photo'] ?? 'public/images/default.jpg') ?>"
+                src="<?= htmlspecialchars($chat['photo'] ? 'public/images/' . $chat['photo'] : 'public/images/default.jpg') ?>"
                 alt="Photo de <?= htmlspecialchars($chat['nom']) ?>">
             <div class="carte-chat-info">
                 <h3><?= htmlspecialchars($chat['nom']) ?></h3>
