@@ -131,7 +131,7 @@ class AdminController {
 
     public function updateStatutReservation(int $id): void {
         $this->requireAdmin();
-        $statut = $_POST['statut'] ?? 'en_attente';
+        $statut = $_GET['statut'] ?? 'en_attente';
         $this->modelReservation->updateStatut($id, $statut);
         header('Location: index.php?page=admin&action=reservations');
         exit;
