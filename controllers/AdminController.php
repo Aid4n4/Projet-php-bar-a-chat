@@ -6,6 +6,7 @@
 
 require_once 'models/Admin.php';
 require_once 'models/Chat.php';
+require_once 'models/ArticleCarte.php';
 require_once 'models/Horaire.php';
 require_once 'models/InfoPratique.php';
 require_once 'models/Reservation.php';
@@ -14,6 +15,7 @@ class AdminController {
 
     private Admin $modelAdmin;
     private Chat $modelChat;
+    private ArticleCarte $modelArticle;
     private Horaire $modelHoraire;
     private InfoPratique $modelInfo;
     private Reservation $modelReservation;
@@ -21,6 +23,7 @@ class AdminController {
     public function __construct() {
         $this->modelAdmin = new Admin();
         $this->modelChat = new Chat();
+        $this->modelArticle = new ArticleCarte();
         $this->modelHoraire = new Horaire();
         $this->modelInfo = new InfoPratique();
         $this->modelReservation = new Reservation();
@@ -64,6 +67,7 @@ class AdminController {
 
         $chats        = $this->modelChat->getAll();
         $reservations = $this->modelReservation->getAll();
+        $articles     = $this->modelArticle->getAll(); // ← ajouter
 
         include 'views/templates/header.php';
         include 'views/admin/dashboard.php';
