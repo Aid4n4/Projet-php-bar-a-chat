@@ -6,11 +6,11 @@
 
 // Labels lisibles pour chaque clé
 $labels = [
-    'adresse' => 'Adresse',
-    'telephone' => 'Téléphone',
-    'email' => 'Email',
+    'adresse' => 'Adresse *',
+    'telephone' => 'Téléphone *',
+    'email' => 'Email *',
     'instagram' => 'Instagram',
-    'description' => 'Description',
+    'description' => 'Description *',
 ];
 ?>
 
