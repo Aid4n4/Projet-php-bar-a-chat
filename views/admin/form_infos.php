@@ -31,17 +31,17 @@ $labels = [
                     </label>
 
                     <?php if ($info['cle'] === 'description') : ?>
-                        <!-- Description → textarea -->
                         <textarea id="<?= $info['cle'] ?>"
-                                  name="infos[<?= $info['cle'] ?>]"><?=
+                                name="infos[<?= $info['cle'] ?>]"
+                                required><?=
                             htmlspecialchars($info['valeur'])
                         ?></textarea>
                     <?php else : ?>
-                        <!-- Autres infos → input texte -->
                         <input type="text"
-                               id="<?= $info['cle'] ?>"
-                               name="infos[<?= $info['cle'] ?>]"
-                               value="<?= htmlspecialchars($info['valeur']) ?>">
+                            id="<?= $info['cle'] ?>"
+                            name="infos[<?= $info['cle'] ?>]"
+                            value="<?= htmlspecialchars($info['valeur']) ?>"
+                            required>
                     <?php endif; ?>
                 </div>
             <?php endforeach; ?>
