@@ -46,8 +46,8 @@ foreach ($infos as $info) {
                         <th><?= htmlspecialchars($horaire['jour']) ?></th>
                         <td>
                             <?php if ($horaire['est_ouvert']) : ?>
-                                <?= $horaire['heure_ouverture'] ?>
-                                — <?= $horaire['heure_fermeture'] ?>
+                               <?= substr($horaire['heure_ouverture'], 0, 5) ?>
+                                — <?= substr($horaire['heure_fermeture'], 0, 5) ?>
                             <?php else : ?>
                                 <span class="ferme">Fermé</span>
                             <?php endif; ?>
