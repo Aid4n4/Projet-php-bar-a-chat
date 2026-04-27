@@ -10,7 +10,7 @@ $labels = [
     'telephone' => 'Téléphone',
     'email' => 'Email',
     'instagram' => 'Instagram',
-    'description' => 'Description du bar',
+    'description' => 'Description',
 ];
 ?>
 
