@@ -33,19 +33,6 @@ $action  = $edition
             <legend>Informations générales</legend>
 
             <div class="champ">
-                <label for="photo">Photo *</label>
-                <input type="file" id="photo" name="photo"
-                    accept="image/jpeg, image/png, image/webp"
-                    <?= $edition ? '' : 'required' ?>>
-                <?php if ($edition && $chat['photo']) : ?>
-                    <p>Photo actuelle :
-                        <img src="public/images/<?= htmlspecialchars($chat['photo']) ?>"
-                            style="width:100px; border-radius:8px; margin-top:0.5rem;">
-                    </p>
-                <?php endif; ?>
-            </div>
-
-            <div class="champ">
                 <label for="nom">Nom *</label>
                 <input type="text" id="nom" name="nom" required
                        value="<?= htmlspecialchars($chat['nom'] ?? '') ?>">
@@ -76,6 +63,20 @@ $action  = $edition
                     </option>
                 </select>
             </div>
+
+            <div class="champ">
+                <label for="photo">Photo *</label>
+                <input type="file" id="photo" name="photo"
+                    accept="image/jpeg, image/png, image/webp"
+                    <?= $edition ? '' : 'required' ?>>
+                <?php if ($edition && $chat['photo']) : ?>
+                    <p>Photo actuelle :
+                        <img src="public/images/<?= htmlspecialchars($chat['photo']) ?>"
+                            style="width:100px; border-radius:8px; margin-top:0.5rem;">
+                    </p>
+                <?php endif; ?>
+            </div>
+            
         </fieldset>
 
         <fieldset style="margin-top: 1rem;">
