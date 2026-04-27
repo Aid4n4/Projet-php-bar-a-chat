@@ -10,7 +10,7 @@
     <div class="hero-contenu">
         <h1>Bienvenue au Ronron Café !</h1>
         <p class="hero-sous-titre">Un bar à chats cosy au cœur de Lyon</p>
-        <a href="index.php?page=reservation" class="btn btn-principal">
+        <a href="index.php?page=reservation" class="btn btn-principal" style="margin-top: 1rem; color: white;">
             Réserver une place
         </a>
     </div>
@@ -26,7 +26,7 @@
         de délicieuses boissons tout en profitant de la compagnie de
         nos adorables résidents félins. Un moment de détente garanti !
     </p>
-    <a href="index.php?page=residents" class="btn btn-principal" style="margin-top: 1rem;">
+    <a href="index.php?page=residents" class="btn btn-principal" style="margin-top: 1rem; color: white;">
         Rencontrer nos résidents
     </a>
 </section>
