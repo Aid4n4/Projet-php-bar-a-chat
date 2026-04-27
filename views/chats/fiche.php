@@ -3,6 +3,12 @@
 // views/chats/fiche.php — Fiche détaillée d'un résident
 // Variables disponibles : $chat
 // ============================================================
+
+// Labels des caractéristiques accordés selon le sexe du chat
+$joueur = ($chat['sexe'] === 'Femelle') ? 'Joueuse' : 'Joueur';
+$calin = ($chat['sexe'] === 'Femelle') ? 'Câline' : 'Câlin';
+$gourmand  = ($chat['sexe'] === 'Femelle') ? 'Gourmande' : 'Gourmand';
+$paresseux = ($chat['sexe'] === 'Femelle') ? 'Paresseuse' : 'Paresseux';
 ?>
 
 <a href="index.php?page=residents" class="btn btn-secondaire">
@@ -36,7 +42,7 @@
             <h2>Caractère</h2>
 
             <div class="car-ligne">
-                <span class="car-label">Joueur</span>
+                <span class="car-label"><?= $joueur ?></span>
                 <div class="car-barre">
                     <div class="car-barre-remplie"
                          style="width: <?= ($chat['car_joueur'] / 5) * 100 ?>%">
@@ -45,7 +51,7 @@
             </div>
 
             <div class="car-ligne">
-                <span class="car-label">Câlin</span>
+                <span class="car-label"><?= $calin ?></span>
                 <div class="car-barre">
                     <div class="car-barre-remplie"
                          style="width: <?= ($chat['car_calin'] / 5) * 100 ?>%">
@@ -54,7 +60,7 @@
             </div>
 
             <div class="car-ligne">
-                <span class="car-label">Gourmand</span>
+                <span class="car-label"><?= $gourmand ?></span>
                 <div class="car-barre">
                     <div class="car-barre-remplie"
                          style="width: <?= ($chat['car_gourmand'] / 5) * 100 ?>%">
@@ -63,7 +69,7 @@
             </div>
 
             <div class="car-ligne">
-                <span class="car-label">Paresseux</span>
+                <span class="car-label"><?= $paresseux ?></span>
                 <div class="car-barre">
                     <div class="car-barre-remplie"
                          style="width: <?= ($chat['car_paresseux'] / 5) * 100 ?>%">
@@ -89,7 +95,7 @@
         <?php endif; ?>
 
         <?php if ($chat['desc_aime']) : ?>
-            <h2>Il/Elle aime</h2>
+            <h2><?= ($chat['sexe'] === 'Femelle') ? 'Elle aime' : 'Il aime' ?></h2>
             <p><?= htmlspecialchars($chat['desc_aime']) ?></p>
         <?php endif; ?>
 
