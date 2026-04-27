@@ -9,7 +9,7 @@
 <section class="hero">
     <div class="hero-contenu">
         <h1>Bienvenue au Ronron Café !</h1>
-        <p class="hero-sous-titre">Un bar à chats cosy au cœur de Lyon</p>
+        <p class="hero-sous-titre">Un café à chats cosy au cœur de Lyon</p>
         <a href="index.php?page=reservation" class="btn btn-principal" style="margin-top: 1rem; color: white;">
             Réserver une place
         </a>
