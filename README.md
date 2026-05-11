@@ -102,4 +102,5 @@ Projet-php-bar-a-chat/
 ## Auteurs
 
 - **Serena Pot** — [@Aid4n4](https://github.com/Aid4n4)
-- Projet réalisé en binôme — Université Lyon 2, 2026
+- **Maely Thomas** - binôme
+- Université Lyon 2, 2026
