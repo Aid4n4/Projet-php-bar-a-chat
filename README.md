@@ -9,15 +9,15 @@ Site web dynamique pour un bar à chats fictif, développé en PHP avec une arch
 
 | Page d'accueil | Les résidents |
 |:-:|:-:|
-| ![Accueil](screenshots/accueil.png) | ![Résidents](screenshots/residents.png) |
+| ![Accueil](screenshots/Accueil.png) | ![Résidents](screenshots/Residents.png) |
 
 | La carte | Réservation |
 |:-:|:-:|
-| ![Carte](screenshots/carte.png) | ![Réservation](screenshots/reservation.png) |
+| ![Carte](screenshots/Carte.png) | ![Réservation](screenshots/Reservation.png) |
 
 | Infos pratiques | Tableau de bord admin |
 |:-:|:-:|
-| ![Infos](screenshots/infos.png) | ![Admin](screenshots/admin.png) |
+| ![Infos](screenshots/Infos.png) | ![Admin](screenshots/Admin.png) |
 
 ---
 
